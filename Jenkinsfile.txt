@@ -16,7 +16,7 @@ pipeline {
 
          stage('Pre-Deployment Configuration - Caches') {
                 steps {
-                    dir('resources/edge') {
+                    dir('forecastweatherapi') {
                     println "Predeployment of Caches "
                     sh "mvn apigee-config:caches " +
                             "    -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
@@ -29,7 +29,7 @@ pipeline {
 
             stage('Pre-Deployment Configuration - targetservers') {
                 steps {
-                    dir('resources/edge') {
+                    dir('forecastweatherapi') {
                     println "Predeployment of targetservers "
                     sh "mvn apigee-config:targetservers " +
                             "    -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
@@ -42,7 +42,7 @@ pipeline {
 
             stage('Pre-Deployment Configuration - keyvaluemaps ') {
                 steps {
-                    dir('resources/edge') {
+                    dir('forecastweatherapi') {
                     println "Predeployment of keyvaluemaps  "
                     sh "mvn apigee-config:keyvaluemaps " +
                             "    -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
