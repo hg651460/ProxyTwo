@@ -16,10 +16,10 @@ pipeline {
 
          stage('Pre-Deployment Configuration - Caches') {
                 steps {
-                    dir('edge') {
+                    dir('forecastweatherapi') {
                     println "Predeployment of Caches "
                     sh "mvn apigee-config:caches " +
-                            "    -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
+                            "    -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
                             "    -Dusername=${params.apigee_user} " +
                             "    -Dpassword=${params.apigee_pwd}"
 
@@ -29,10 +29,10 @@ pipeline {
 
             stage('Pre-Deployment Configuration - targetservers') {
                 steps {
-                    dir('edge') {
+                    dir('forecastweatherapi') {
                     println "Predeployment of targetservers "
                     sh "mvn apigee-config:targetservers " +
-                            "    -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
+                            "    -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
                             "    -Dusername=${params.apigee_user} " +
                             "    -Dpassword=${params.apigee_pwd}"
 
@@ -42,10 +42,10 @@ pipeline {
 
             stage('Pre-Deployment Configuration - keyvaluemaps ') {
                 steps {
-                    dir('edge') {
+                    dir('forecastweatherapi') {
                     println "Predeployment of keyvaluemaps  "
                     sh "mvn apigee-config:keyvaluemaps " +
-                            "    -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
+                            "    -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
                             "    -Dusername=${params.apigee_user} " +
                             "    -Dpassword=${params.apigee_pwd}"
 
@@ -55,7 +55,7 @@ pipeline {
 
             stage('Build proxy bundle') {
                 steps {
-                    dir('edge') {
+                    dir('forecastweatherapi') {
                     sh "mvn package -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org}"
 
                 }
@@ -64,7 +64,7 @@ pipeline {
 
             stage('Deploy proxy bundle') {
                 steps {
-                    dir('edge') {
+                    dir('forecastweatherapi') {
                     sh "mvn apigee-enterprise:deploy -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} -Dusername=${params.apigee_user} -Dpassword=${params.apigee_pwd}"
                 }
             }
