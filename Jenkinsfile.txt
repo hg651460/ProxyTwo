@@ -16,7 +16,7 @@ pipeline {
 		    stage('Static Code Analysis, Unit Test and Coverage') {
             
                 steps {
-                    dir('edge') {
+                    dir('forecastweatherapi') {
                     sh "mvn test -Pproxy-unit-test "
                 }
             }
