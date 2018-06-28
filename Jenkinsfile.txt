@@ -80,7 +80,7 @@ pipeline {
 
             stage('Post-Deployment Configurations for API ') {
                 steps {
-                    dir('edge') {
+                    dir('forecastweatherapi') {
                     println "Post-Deployment Configurations for API Products Configurations, App Developer and App Configuration "
                     sh "mvn -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
                             "    -Dapigee.config.options=create " +
