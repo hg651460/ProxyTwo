@@ -78,18 +78,5 @@ pipeline {
             }
         }
 
-            stage('Post-Deployment Configurations for API ') {
-                steps {
-                    dir('forecastweatherapi') {
-                    println "Post-Deployment Configurations for API Products Configurations, App Developer and App Configuration "
-                    sh "mvn -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
-                            "    -Dapigee.config.options=create " +
-                            "    -Dusername=${params.apigee_user} -Dpassword=${params.apigee_pwd} " +
-                            "    apigee-config:apiproducts " +
-                            "    apigee-config:developers apigee-config:apps apigee-config:exportAppKeys"
-                }
-            }
-        }
-
     }
 }
